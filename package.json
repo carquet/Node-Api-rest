@@ -4,6 +4,7 @@
   "description": "tutorial de Carlos Azaustre en youtube",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,10 @@
   },
   "homepage": "https://github.com/carquet/node-api-rest#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
