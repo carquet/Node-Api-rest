@@ -1,0 +1,19 @@
+{
+  "name": "node-api-rest",
+  "version": "1.0.0",
+  "description": "tutorial de Carlos Azaustre en youtube",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carquet/node-api-rest.git"
+  },
+  "author": "laetitia carquet",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/carquet/node-api-rest/issues"
+  },
+  "homepage": "https://github.com/carquet/node-api-rest#readme"
+}
