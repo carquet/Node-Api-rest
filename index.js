@@ -12,6 +12,8 @@ const port = process.env.PORT || 3000
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+
+
 app.get('/api/product', (req,res)=> {
 	//callback function that calls all ({}) of the products
 	Product.find({}, (err, products)=>{
@@ -21,8 +23,8 @@ app.get('/api/product', (req,res)=> {
 	res.status(200).send({products})	
 	})
 	
-
 } )
+
 
 app.get('/api/product/:productId', (req, res) => {
 	//callback function
@@ -52,11 +54,31 @@ app.post('/api/product', (req, res) => {
 	})
 })
 
-app.put('api/product/:productId', (req, res) => {
 
+app.put('/api/product/:productId', (req, res) => {
+	let productId = req.params.productId
+	let update = req.body
+
+	Product.findByIdAndUpdate(productId, update, (err, productUpdated) =>{
+		if (err) res.status(500).send({message: `error in your request: ${err}`})
+
+		res.status(200).send({product: productUpdated})
+		})
 })
 
-app.delete('api/product/:productId', (req, res) => {
+
+
+app.delete('/api/product/:productId', (req, res) => {
+	let productId = req.params.productId
+
+	Product.findById(productId, (err, product) =>{
+		if (err) res.status(500).send({message: `error in your request: ${err}`})
+
+		product.remove(err => {
+			if (err) res.status(500).send({message: `error in your request: ${err}`})
+			res.status(200).send({message:`the product was deleted`})
+		})
+	})
 
 })
 
