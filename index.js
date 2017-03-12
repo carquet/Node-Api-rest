@@ -4,6 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
+const Product = require('./models/product')
+
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -21,9 +23,19 @@ app.get('/api/product/:productId', (req, res) => {
 })
 
 app.post('/api/product', (req, res) => {
-	//callback function
+	console.log('POST')
 	console.log(req.body)
-	res.status(200).send({message: 'your product was received'})
+	let product = new Product()
+	product.name = req.body.name
+	product.picture = req.body.picture
+	product.price = req.body.price
+	product.category = req.body.category
+	product.description = req.body.description
+
+	product.save((err, productStored) => {
+		if (err) res.status(500).send({message:`error when the product was sent: ${err}`})
+		res.status(200).send({product: productStored})
+	})
 })
 
 app.put('api/product/:productId', (req, res) => {
