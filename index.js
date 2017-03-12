@@ -13,13 +13,27 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/api/product', (req,res)=> {
-	//callback function
-	res.status(200).send({product: []})
+	//callback function that calls all ({}) of the products
+	Product.find({}, (err, products)=>{
+		if (err) return res.status(500).send({message: `error in your request: ${err}`})
+		if (!products) return res.status(404).send({message: `the product does not exist`})
+
+	res.status(200).send({products})	
+	})
+	
 
 } )
 
 app.get('/api/product/:productId', (req, res) => {
 	//callback function
+	let productId = req.params.productId
+
+	Product.findById(productId, (err, product)=>{
+		if (err) return res.status(500).send({message: `error in your request: ${err}`})
+		if(!product) return res.status(404).send({message: `the product does not exist`})
+
+		res.status(200).send({product})
+	})
 })
 
 app.post('/api/product', (req, res) => {
