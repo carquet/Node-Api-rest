@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/carquet/node-api-rest/issues"
   },
-  "homepage": "https://github.com/carquet/node-api-rest#readme"
+  "homepage": "https://github.com/carquet/node-api-rest#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
 }
